@@ -21,6 +21,14 @@ cd apps/scheduling_system
 pre-commit install
 ```
 
+### Usage
+
+To create an appointment:
+
+1. Open the **Appointment** doctype.
+2. Enter the **start time** and **user**.
+3. The **end time** will be filled automatically, and overlapping appointments will be prevented.
+
 Pre-commit is configured to use the following tools for checking and formatting your code:
 
 - ruff
