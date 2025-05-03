@@ -29,7 +29,7 @@ class Appointment(Document):
 				"seller": self.seller,
 				"start_date": ["<", self.end_date],
 				"end_date": [">", self.start_date],
-				"name": ["!=", self.name]  # Exclude the current appointment
+				"name": ["!=", self.name]  
 			},
 			fields=["start_date", "end_date"],
 			order_by="start_date asc",
