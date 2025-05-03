@@ -6,6 +6,7 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
+  "new_appointment_section",
   "client_name",
   "start_date",
   "duration",
@@ -20,6 +21,7 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Client Name",
+   "placeholder": "John Doe",
    "reqd": 1,
    "unique": 1
   },
@@ -28,6 +30,7 @@
    "fieldtype": "Datetime",
    "in_list_view": 1,
    "label": "Start Date",
+   "placeholder": "Select the start date and time",
    "reqd": 1
   },
   {
@@ -35,6 +38,7 @@
    "fieldtype": "Time",
    "in_list_view": 1,
    "label": "Duration",
+   "placeholder": "e.g., 1h 30min or just enter minutes",
    "reqd": 1
   },
   {
@@ -46,7 +50,8 @@
   {
    "fieldname": "description",
    "fieldtype": "Small Text",
-   "label": "Description"
+   "label": "Description",
+   "placeholder": "Enter the reason or details of the appointment"
   },
   {
    "fieldname": "seller",
@@ -54,6 +59,7 @@
    "in_list_view": 1,
    "label": "Seller",
    "options": "User",
+   "placeholder": "Select the responsible seller",
    "reqd": 1
   },
   {
@@ -62,13 +68,18 @@
    "label": "Status",
    "options": "Scheduled\nFinished\nCanceled",
    "reqd": 1
+  },
+  {
+   "fieldname": "new_appointment_section",
+   "fieldtype": "Section Break",
+   "label": "New Appointment"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_calendar_and_gantt": 1,
  "links": [],
- "modified": "2025-05-01 15:04:42.982633",
+ "modified": "2025-05-03 09:14:32.974542",
  "modified_by": "Administrator",
  "module": "Scheduling System",
  "name": "Appointment",

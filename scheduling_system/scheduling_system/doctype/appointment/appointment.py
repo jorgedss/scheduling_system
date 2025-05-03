@@ -38,8 +38,8 @@ class Appointment(Document):
 
 		if conflicts:
 			conflict_dict = conflicts[0]
-			init = format_datetime(conflict_dict["start_date"])
+			start = format_datetime(conflict_dict["start_date"])
 			end = format_datetime(conflict_dict["end_date"])
 
-			frappe.throw(frappe._("Este vendedor está ocupado de {0} às {1}").format(init, end),
-								title=frappe._("Conflito de agendamento"))
+			frappe.throw(frappe._("This seller has an appointment from {0} to {1}. Please choose another time.").format(start, end),
+								title=frappe._("Scheduling conflict"))
