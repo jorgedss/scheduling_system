@@ -9,9 +9,6 @@ from frappe.utils.data import format_datetime
 
 
 class Appointment(Document):
-	def before_save(self):
-			self.set_end_date()
-			self.check_schedule_conflict()
 
 	def validate(self):
 		if self.start_date and self.start_date < _datetime():
@@ -19,6 +16,10 @@ class Appointment(Document):
                 frappe._("Start datetime cannot be in the past."),
                 title=frappe._("Invalid datetime")
             )
+			
+	def before_save(self):
+			self.set_end_date()
+			self.check_schedule_conflict()
 
 	def set_end_date(self):
 		if self.start_date and self.duration:
