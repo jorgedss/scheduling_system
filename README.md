@@ -1,8 +1,22 @@
-### Scheduling System
+# Scheduling System
 
-Appointment scheduler with auto end-time and conflict prevention
+Appointment scheduler with automatic end-time and conflict prevention.
 
-### Installation
+---
+
+## Prerequisites
+
+Make sure you have the following installed before setting up the project:
+
+- [Python 3.10+](https://www.python.org/)
+- [Node.js 16+](https://nodejs.org/)
+- [Yarn](https://classic.yarnpkg.com/en/docs/install/)
+- [MariaDB 10.6](https://mariadb.org/)
+- [Redis](https://redis.io/)
+- [Frappe Bench CLI](https://frappeframework.com/docs/v15/user/en/installation)
+- [Pre-commit](https://pre-commit.com/) (for linting and formatting)
+
+## Installation
 
 You can install this app using the [bench](https://github.com/frappe/bench) CLI:
 
@@ -12,7 +26,40 @@ bench get-app $URL_OF_THIS_REPO --branch develop
 bench install-app scheduling_system
 ```
 
-### Contributing
+---
+
+## Usage
+
+To create an appointment:
+
+1. Open the **Appointment** doctype.
+2. Enter the **start time**, **duration**, and **seller**.
+3. The **end time** is automatically calculated.
+4. The system prevents overlapping appointments and invalid datetimes.
+
+---
+
+## Validations
+
+This app includes backend validations to ensure data integrity:
+
+- **Start datetime cannot be in the past**
+
+  ```
+  Title: Invalid datetime  
+  Message: Start datetime cannot be in the past.
+  ```
+
+- **Seller cannot have overlapping appointments**
+
+  ```
+  Title: Scheduling conflict  
+  Message: This seller has an appointment from [start] to [end]. Please choose another time.
+  ```
+
+---
+
+## Contributing
 
 This app uses `pre-commit` for code formatting and linting. Please [install pre-commit](https://pre-commit.com/#installation) and enable it for this repository:
 
@@ -21,29 +68,8 @@ cd apps/scheduling_system
 pre-commit install
 ```
 
-### Usage
+---
 
-To create an appointment:
+## License
 
-1. Open the **Appointment** doctype.
-2. Enter the **start time** and **user**.
-3. The **end time** will be filled automatically, and overlapping appointments will be prevented.
-
-Pre-commit is configured to use the following tools for checking and formatting your code:
-
-- ruff
-- eslint
-- prettier
-- pyupgrade
-
-### CI
-
-This app can use GitHub Actions for CI. The following workflows are configured:
-
-- CI: Installs this app and runs unit tests on every push to `develop` branch.
-- Linters: Runs [Frappe Semgrep Rules](https://github.com/frappe/semgrep-rules) and [pip-audit](https://pypi.org/project/pip-audit/) on every pull request.
-
-
-### License
-
-mit
+MIT
