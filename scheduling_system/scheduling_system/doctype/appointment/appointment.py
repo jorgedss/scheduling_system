@@ -1,6 +1,7 @@
 # Copyright (c) 2025, Jorge Souza and contributors
 # For license information, please see license.txt
 
+from frappe.utils import now as _datetime
 import frappe
 from frappe.model.document import Document
 from frappe.utils import add_to_date
@@ -11,6 +12,13 @@ class Appointment(Document):
 	def before_save(self):
 			self.set_end_date()
 			self.check_schedule_conflict()
+
+	def validate(self):
+		if self.start_date and self.start_date < _datetime():
+			frappe.throw(
+                frappe._("Start datetime cannot be in the past."),
+                title=frappe._("Invalid datetime")
+            )
 
 	def set_end_date(self):
 		if self.start_date and self.duration:
@@ -42,4 +50,4 @@ class Appointment(Document):
 			end = format_datetime(conflict_dict["end_date"])
 
 			frappe.throw(frappe._("This seller has an appointment from {0} to {1}. Please choose another time.").format(start, end),
-								title=frappe._("Scheduling conflict"))
+									title=frappe._("Scheduling conflict"))
